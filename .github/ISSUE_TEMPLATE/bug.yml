@@ -1,0 +1,14 @@
+name: Bug report
+description: Something didn't work as expected
+labels: [bug]
+body:
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: A minimal example (input, command or code), what you got and what you expected. Never paste secrets or real customer data.
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Version
+      placeholder: "pip show <package>"

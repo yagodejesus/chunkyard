@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chunkyard"
+version = "0.1.0"
+description = "Lint your RAG corpus before embedding it: exact and near-duplicate chunks (MinHash), boilerplate learned from the corpus, broken encoding, markup leftovers, badly sized chunks and missing sources — with a one-command fix."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Yago de Jesus Martins" }]
+keywords = ["rag", "llm", "embeddings", "vector database", "chunking", "deduplication", "minhash", "data quality"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Text Processing",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-cov>=5", "ruff>=0.6"]
+
+[project.urls]
+Homepage = "https://github.com/yagodejesus/chunkyard"
+Issues = "https://github.com/yagodejesus/chunkyard/issues"
+
+[project.scripts]
+chunkyard = "chunkyard.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chunkyard"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 160
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B905", "E501"]
